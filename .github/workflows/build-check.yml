@@ -44,7 +44,7 @@ jobs:
             libsqlite3-dev \
             libxcb-keysyms1-dev \
             ninja-build \
-            qt510base \
+            qt515base \
             qt515webengine
 
       - name: Configure & Build

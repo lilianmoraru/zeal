@@ -40,7 +40,7 @@ jobs:
             cmake \
             extra-cmake-modules \
             libarchive-dev \
-            libqt5x11extras5-dev \
+            qt515x11extras \
             libsqlite3-dev \
             libxcb-keysyms1-dev \
             ninja-build \
@@ -127,6 +127,15 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - name: Install Qt 5.15
+        run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal -y
+          sudo apt-get -y -qq update
+          sudo apt-get -y -qq --no-install-recommends install \
+            qt515x11extras \
+            qt515base \
+            qt515webengine
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -141,7 +150,7 @@ jobs:
             cmake extra-cmake-modules
             libappindicator-dev
             libarchive-dev
-            libqt5x11extras5-dev
+            qt515x11extras
             libsqlite3-dev
             libxcb-keysyms1-dev
             ninja-build

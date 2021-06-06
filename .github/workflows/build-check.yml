@@ -33,6 +33,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-bionic -y
           sudo apt-get -y -qq update
           sudo apt-get -y -qq --no-install-recommends install \
             cmake \
@@ -42,15 +43,15 @@ jobs:
             libsqlite3-dev \
             libxcb-keysyms1-dev \
             ninja-build \
-            qt5-default \
-            qtwebengine5-dev
+            qt510base \
+            qt515webengine
 
       - name: Configure & Build
         uses: lukka/run-cmake@v3
         with:
           buildDirectory: ${{ runner.workspace }}/build/
           cmakeAppendedArgs: >-
-            --config RelWithDebInfo
+            --config Release
             -G Ninja
             -DZEAL_PORTABLE_BUILD=${{ matrix.config.options.ZEAL_PORTABLE_BUILD }}
           cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
@@ -143,8 +144,8 @@ jobs:
             libsqlite3-dev
             libxcb-keysyms1-dev
             ninja-build
-            qtbase5-dev
-            qtwebengine5-dev
+            qt515base
+            qt515webengine
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v2

@@ -44,8 +44,11 @@ jobs:
             libsqlite3-dev \
             libxcb-keysyms1-dev \
             ninja-build \
+            qt515x11extras \
             qt515base \
-            qt515webengine
+            qt515wayland \
+            qt515webengine \
+            qt515webchannel
 
       - name: Configure & Build
         uses: lukka/run-cmake@v3
@@ -134,7 +137,9 @@ jobs:
           sudo apt-get -y -qq --no-install-recommends install \
             qt515x11extras \
             qt515base \
-            qt515webengine
+            qt515wayland \
+            qt515webengine \
+            qt515webchannel
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -154,8 +159,11 @@ jobs:
             libsqlite3-dev
             libxcb-keysyms1-dev
             ninja-build
+            qt515x11extras
             qt515base
+            qt515wayland
             qt515webengine
+            qt515webchannel
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v2

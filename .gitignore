@@ -37,3 +37,7 @@ squashfs-root/
 
 # Linux appdata
 /assets/freedesktop/org.zealdocs.zeal.appdata.xml
+
+# CLion
+.idea
+cmake-build-*

@@ -8,7 +8,4 @@ add_library(Browser STATIC
     webview.cpp
 )
 
-target_link_libraries(Browser)
-
-find_package(Qt5 COMPONENTS WebEngineWidgets WebChannel REQUIRED)
-target_link_libraries(Browser Qt5::WebEngineWidgets Qt5::WebChannel)
+target_link_libraries(Browser Qt::WebEngineWidgets Qt::WebChannel)

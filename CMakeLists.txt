@@ -6,6 +6,18 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 project(Zeal VERSION 0.6.2)
 
+set(COMMON_REQUIRED_QT_LIBS Widgets WebEngineWidgets WebChannel Network Concurrent Gui)
+find_package(Qt6 QUIET COMPONENTS Widgets)
+if (Qt6_FOUND)
+    find_package(Qt6 REQUIRED COMPONENTS ${COMMON_REQUIRED_QT_LIBS})
+    set(QtWidgets_VERSION "${Qt6Widgets_VERSION}")
+else()
+    find_package(Qt5 5.15 REQUIRED COMPONENTS ${COMMON_REQUIRED_QT_LIBS} WebEngine X11Extras)
+    set(QtWidgets_VERSION "${Qt5Widgets_VERSION}")
+endif()
+
+message(STATUS "Using Qt ${QtWidgets_VERSION}")
+
 # Set to TRUE for a tagged release.
 # NOTE: Don't forget to add a new release entry in the AppStream metadata!
 set(RELEASE_VERSION FALSE)
@@ -22,7 +34,8 @@ set(PROJECT_COPYRIGHT "© 2013-2020 Oleg Shparber and other contributors")
 set(PROJECT_DESCRIPTION "A simple documentation browser.")
 set(PROJECT_URL "https://zealdocs.org")
 
-set(QT_MINIMUM_VERSION 5.9.5)
+# We are using Qt 5.15 versionless targets
+set(QT_MINIMUM_VERSION 5.15.0)
 
 # Determine version for dev builds.
 if(NOT RELEASE_VERSION)

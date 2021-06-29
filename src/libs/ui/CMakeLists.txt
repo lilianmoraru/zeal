@@ -21,7 +21,4 @@ add_library(Ui STATIC
     ${Ui_FORMS} # For Qt Creator.
 )
 
-target_link_libraries(Ui Browser Sidebar QxtGlobalShortcut Widgets Registry)
-
-find_package(Qt5 COMPONENTS WebEngineWidgets REQUIRED)
-target_link_libraries(Ui Qt5::WebEngineWidgets)
+target_link_libraries(Ui Browser Sidebar QxtGlobalShortcut Widgets Registry Qt::WebEngineWidgets)
